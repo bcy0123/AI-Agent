@@ -1,0 +1,962 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Knowledge Base Management
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 07763713-446b-47c7-83ee-b2f366e9340c
+    name: intention
+    selector:
+    - conversation
+    - intention
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: 👋 Hello! I'm USER_XXX’s Personal Assistant. How can I help
+      you today?
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: true
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1740386743284-source-1740385625304-target
+      selected: false
+      source: '1740386743284'
+      sourceHandle: source
+      target: '1740385625304'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1740446375080-source-1740446329997-target
+      selected: false
+      source: '1740446375080'
+      sourceHandle: source
+      target: '1740446329997'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1740446329997-source-1740448349581-target
+      selected: false
+      source: '1740446329997'
+      sourceHandle: source
+      target: '1740448349581'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1740453560793-true-1740453599802-target
+      selected: false
+      source: '1740453560793'
+      sourceHandle: 'true'
+      target: '1740453599802'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1740453560793-false-1740453621980-target
+      selected: false
+      source: '1740453560793'
+      sourceHandle: 'false'
+      target: '1740453621980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: if-else
+      id: 1740448451582-source-1740453560793-target
+      source: '1740448451582'
+      sourceHandle: source
+      target: '1740453560793'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: http-request
+      id: 1740459458143-source-1740448451582-target
+      source: '1740459458143'
+      sourceHandle: source
+      target: '1740448451582'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1740385625304-914605d7-f836-472e-9924-c06f33105f35-1740446375080-target
+      source: '1740385625304'
+      sourceHandle: 914605d7-f836-472e-9924-c06f33105f35
+      target: '1740446375080'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1740385625304-94aa2ac0-8f01-4b94-aa9a-dfb1942215f5-1740387087932-target
+      source: '1740385625304'
+      sourceHandle: 94aa2ac0-8f01-4b94-aa9a-dfb1942215f5
+      target: '1740387087932'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1740385625304-true-1740693519453-target
+      source: '1740385625304'
+      sourceHandle: 'true'
+      target: '1740693519453'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1740693519453-source-1740693801045-target
+      source: '1740693519453'
+      sourceHandle: source
+      target: '1740693801045'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1740693801045-true-1740448394953-target
+      source: '1740693801045'
+      sourceHandle: 'true'
+      target: '1740448394953'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1740448394953-true-1740459458143-target
+      source: '1740448394953'
+      sourceHandle: 'true'
+      target: '1740459458143'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1740448394953-false-1740448423947-target
+      source: '1740448394953'
+      sourceHandle: 'false'
+      target: '1740448423947'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1740693801045-f4dbb778-ede1-44d2-9fad-39e60a850d82-1740728759084-target
+      source: '1740693801045'
+      sourceHandle: f4dbb778-ede1-44d2-9fad-39e60a850d82
+      target: '1740728759084'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: parameter-extractor
+      id: 1740728759084-source-1740729494535-target
+      source: '1740728759084'
+      sourceHandle: source
+      target: '1740729494535'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: answer
+      id: 1740729494535-source-1740729596807-target
+      source: '1740729494535'
+      sourceHandle: source
+      target: '1740729596807'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1740384187535-source-1740386743284-target
+      source: '1740384187535'
+      sourceHandle: source
+      target: '1740386743284'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1740384187535'
+      position:
+        x: 30
+        y: 311
+      positionAbsolute:
+        x: 30
+        y: 311
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 253c37e3-ada8-4b7e-a17c-0a37b72b5963
+            value: Knowledge Base
+            varType: string
+            variable_selector:
+            - '1740386743284'
+            - text
+          id: 'true'
+          logical_operator: and
+        - case_id: 914605d7-f836-472e-9924-c06f33105f35
+          conditions:
+          - comparison_operator: contains
+            id: 66874417-67f4-4e81-a056-e212b144c970
+            value: General Task
+            varType: string
+            variable_selector:
+            - '1740386743284'
+            - text
+          id: 914605d7-f836-472e-9924-c06f33105f35
+          logical_operator: and
+        - case_id: 94aa2ac0-8f01-4b94-aa9a-dfb1942215f5
+          conditions:
+          - comparison_operator: contains
+            id: 8ed5296b-227c-47e0-a26d-7b7b0be15bdd
+            value: Unclear
+            varType: string
+            variable_selector:
+            - '1740386743284'
+            - text
+          id: 94aa2ac0-8f01-4b94-aa9a-dfb1942215f5
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 222
+      id: '1740385625304'
+      position:
+        x: 638
+        y: 311
+      positionAbsolute:
+        x: 638
+        y: 311
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - conversation
+          - intention
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 3
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: DATASET_ID_XXX
+          role: system
+          text: "You are a vigilant and reliable Personal Assistant to USER_XXX, a\
+            \ key figure in a leading cybersecurity firm, COMPANY_XXX. Your primary\
+            \ duty is to simplify USER_XXX's life by assisting him with both professional\
+            \ and personal matters.\n\n### Task Classification Rules:\nYour role is\
+            \ to determine whether the user wants to **search or update** the knowledge\
+            \ base, if their request is **a general inquiry**, or if the input is\
+            \ **too vague to determine intent**.\n\n#### **Step 1: Task Classification**\n\
+            Classify the user's input into one of the following three categories:\n\
+            \n- **Knowledge Base** → If the task involves:\n  - **Searching the knowledge\
+            \ base** (e.g., \"What documents are in the knowledge base?\", \"Find\
+            \ all API docs in the knowledge base\").\n  - **Updating the knowledge\
+            \ base**, including:\n    - **Adding new documents or files** (e.g., \"\
+            Add this file to the knowledge base\", \"Upload this document to the knowledge\
+            \ base\").\n    - **Modifying existing knowledge base content** (e.g.,\
+            \ \"Update the cybersecurity SOP in the knowledge base\").\n  \n- **General\
+            \ Task** → If the input **does not involve the knowledge base**, including:\n\
+            \  - Open-ended general inquiries (e.g., \"Tell me about cybersecurity\
+            \ trends\", \"What are the company’s services?\").\n  - Requests that\
+            \ are unrelated to retrieving or updating knowledge base data.\n\n- **Unclear**\
+            \ → If the input is **too vague to determine intent**, even if a past\
+            \ conversation exists.\n\n#### **Examples:**\n1. **Current input:** `\"\
+            帮我查询知识库里都有什么\"`  \n   - **Output:** `Knowledge Base`\n\n2. **Current input:**\
+            \ `\"查询知识库中的所有API文档\"`  \n   - **Output:** `Knowledge Base`\n\n3. **Current\
+            \ input:** `\"能否告诉我知识库的内容\"`  \n   - **Output:** `Knowledge Base`\n\n\
+            4. **Current input:** `\"Update the cybersecurity SOP in the knowledge\
+            \ base\"`  \n   - **Output:** `Knowledge Base`\n\n5. **Current input:**\
+            \ `\"帮我添加这个文件到知识库\"`  \n   - **Output:** `Knowledge Base` \n\n6. **Current\
+            \ input:** `\"上传一个文档到知识库\"`  \n   - **Output:** `Knowledge Base` \n\n\
+            7. **Current input:** `\"What is the company’s cybersecurity strategy?\"\
+            `  \n   - **Output:** `General Task`\n\n8. **Current input:** `\"Can you\
+            \ tell me more about COMPANY_XXX's services?\"`  \n   - **Output:** `General\
+            \ Task`\n\n9. **Current input:** `\"What are the latest trends in AI?\"\
+            `  \n   - **Output:** `General Task`\n\n10. **Current input:** `\"Help\
+            \ me with something.\"`  \n   - **Output:** `Unclear`\n\n11. **Current\
+            \ input:** `\"Do it.\"`  \n   - **Output:** `Unclear`\n\n12. **Current\
+            \ input:** `\"Make it happen.\"`  \n   - **Output:** `Unclear`\n\n####\
+            \ **Response Format:**\nYour response **must be strictly** one of the\
+            \ following:\n- `Knowledge Base`\n- `General Task`\n- `Unclear`\n"
+        - id: DATASET_ID_XXX
+          role: user
+          text: '{{#sys.query#}}'
+        - id: DATASET_ID_XXX
+          role: assistant
+          text: ''
+        selected: false
+        title: 判断具体任务内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1740386743284'
+      position:
+        x: 334
+        y: 311
+      positionAbsolute:
+        x: 334
+        y: 311
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 請提供更具體的任務內容，以便我更好地幫助您😊
+        desc: ''
+        selected: false
+        title: Answer 2
+        type: answer
+        variables: []
+      height: 116
+      id: '1740387087932'
+      position:
+        x: 942
+        y: 311
+      positionAbsolute:
+        x: 942
+        y: 311
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1740446375080'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: DATASET_ID_XXX
+          role: system
+          text: "Answer the user's query: **{{#sys.query#}}**  \n\n### **Response\
+            \ Guidelines:**/\n1. **Check Relevance to Knowledge Base({{#context#}})\
+            \ or Database:/**\n   - If the query is related to topics covered in the\
+            \ **knowledge base** or **database**, use the available information to\
+            \ provide an accurate response.\n   - If the query is **not** related\
+            \ to the knowledge base or database, answer it directly based on general\
+            \ knowledge.\n\n2. **Response Format:**\n   - If answering from the **knowledge\
+            \ base** or **database**, ensure the response is clear, factual, and directly\
+            \ relevant to the provided information.\n   - If responding from general\
+            \ knowledge, keep the answer concise and to the point.\n\n3. **Clarification\
+            \ Handling:**\n   - If the query is unclear or lacks sufficient details,\
+            \ ask the user for more information before proceeding with an answer.\n\
+            \n### **Example Cases:**\n- **User Query (Related to Knowledge Base):**\
+            \  \n  _\"What security services does COMPANY_XXX offer?\"_  \n  **Response\
+            \ (Using Knowledge Base):**  \n  _\"COMPANY_XXX provides Managed Security\
+            \ Services, Cloud Security Solutions, Endpoint Protection, and Security\
+            \ Consulting. Let me know if you need details on any specific service.\"\
+            _  \n\n- **User Query (Not Related to Knowledge Base):**  \n  _\"What's\
+            \ the capital of France?\"_  \n  **Response (Direct Answer):**  \n  _\"\
+            The capital of France is Paris.\"_\n\n- **User Query (Unclear Question):**\
+            \  \n  _\"Tell me about security.\"_  \n  **Response (Request for Clarification):**\
+            \  \n  _\"Could you specify what aspect of security you’re interested\
+            \ in? For example, network security, cybersecurity best practices, or\
+            \ something else?\"_\n"
+        - id: DATASET_ID_XXX
+          role: user
+          text: ''
+        selected: false
+        title: general 回答
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1740446329997'
+      position:
+        x: 1246
+        y: 455
+      positionAbsolute:
+        x: 1246
+        y: 455
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 7ebd722b-4f96-4499-b476-369a87bff4bf
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 3
+          weights:
+            keyword_setting:
+              keyword_weight: 0
+            vector_setting:
+              embedding_model_name: text-embedding-ada-002
+              embedding_provider_name: openai
+              vector_weight: 1
+        query_variable_selector:
+        - '1740384187535'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 92
+      id: '1740446375080'
+      position:
+        x: 942
+        y: 467
+      positionAbsolute:
+        x: 942
+        y: 467
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1740446329997.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 6
+        type: answer
+        variables: []
+      height: 103
+      id: '1740448349581'
+      position:
+        x: 1550
+        y: 455
+      positionAbsolute:
+        x: 1550
+        y: 455
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: DATASET_ID_XXX
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 判断上传文档
+        type: if-else
+      height: 126
+      id: '1740448394953'
+      position:
+        x: 1550
+        y: 619.5
+      positionAbsolute:
+        x: 1550
+        y: 619.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 请上传需要加载的知识文档📄
+        desc: ''
+        selected: false
+        title: 未上传
+        type: answer
+        variables: []
+      height: 100
+      id: '1740448423947'
+      position:
+        x: 1854
+        y: 631
+      positionAbsolute:
+        x: 1854
+        y: 631
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: dataset-P2OvE682uALcKcNcpsHUbzCx
+            type: custom
+          type: no-auth
+        body:
+          data:
+          - key: data
+            type: text
+            value: '{"indexing_technique":"high_quality","process_rule":{"rules":{"pre_processing_rules":[{"id":"remove_extra_spaces","enabled":true},{"id":"remove_urls_emails","enabled":true}],"segmentation":{"separator":"###","max_tokens":500}},"mode":"custom"}}'
+          - file:
+            - '1740459458143'
+            - last_record
+            id: key-value-276
+            key: file
+            type: file
+            value: ''
+          type: form-data
+        desc: ''
+        headers: Authorization:Bearer dataset-P2OvE682uALcKcNcpsHUbzCx
+        method: POST
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request 2
+        type: http-request
+        url: https://{yourdomian}/v1/datasets/{datasetid}/document/create-by-file
+        variables: []
+      height: 151
+      id: '1740448451582'
+      position:
+        x: 2158
+        y: 767
+      positionAbsolute:
+        x: 2158
+        y: 767
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: DATASET_ID_XXX
+            numberVarType: constant
+            value: '200'
+            varType: number
+            variable_selector:
+            - '1740448451582'
+            - status_code
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 3
+        type: if-else
+      height: 126
+      id: '1740453560793'
+      position:
+        x: 2462
+        y: 767
+      positionAbsolute:
+        x: 2462
+        y: 767
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '新的知识库创建成功！
+
+          {{#1740459458143.last_record.name#}}'
+        desc: ''
+        selected: false
+        title: Answer 8
+        type: answer
+        variables: []
+      height: 119
+      id: '1740453599802'
+      position:
+        x: 2766
+        y: 767
+      positionAbsolute:
+        x: 2766
+        y: 767
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 知识库创建失败
+        desc: ''
+        selected: false
+        title: Answer 9
+        type: answer
+        variables: []
+      height: 100
+      id: '1740453621980'
+      position:
+        x: 2766
+        y: 926
+      positionAbsolute:
+        x: 2766
+        y: 926
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        extract_by:
+          enabled: false
+          serial: '1'
+        filter_by:
+          conditions:
+          - comparison_operator: contains
+            key: name
+            value: ''
+          enabled: false
+        item_var_type: file
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: List Operator
+        type: list-operator
+        var_type: array[file]
+        variable:
+        - sys
+        - files
+      height: 92
+      id: '1740459458143'
+      position:
+        x: 1854
+        y: 771
+      positionAbsolute:
+        x: 1854
+        y: 771
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: e5f7c248-b63e-4f42-9f7e-da159f404cd3
+          role: system
+          text: "You are an intelligent AI assistant responsible for analyzing user\
+            \ input and determining their intent regarding database operations.\n\n\
+            ### Instructions:\n1. If the user wants to update or modify the database,\
+            \ including adding, editing, or deleting information, output:\n   - `\"\
+            update knowledge base\"`\n   \n2. If the user wants to retrieve, search,\
+            \ or look up information from the database, output:\n   - `\"search knowledge\
+            \ base\"`\n   \n3. Your response must be **strictly one of the two phrases**\
+            \ above, without any additional text or explanations.\n\n### Output Format:\n\
+            Always return only `\"update knowledge base\"` or `\"search knowledge\
+            \ base\"`, with no additional text.\n"
+        - id: 077a4a21-0671-4c35-a0bf-7df37301719a
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 数据库意图识别
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1740693519453'
+      position:
+        x: 942
+        y: 640
+      positionAbsolute:
+        x: 942
+        y: 640
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 08a6820c-83d0-4671-8015-a99cc44f0264
+            value: update knowledge base
+            varType: string
+            variable_selector:
+            - '1740693519453'
+            - text
+          id: 'true'
+          logical_operator: and
+        - case_id: f4dbb778-ede1-44d2-9fad-39e60a850d82
+          conditions:
+          - comparison_operator: contains
+            id: 0ceea128-aa1a-422b-bca4-b40d6910da89
+            value: search knowledge base
+            varType: string
+            variable_selector:
+            - '1740693519453'
+            - text
+          id: f4dbb778-ede1-44d2-9fad-39e60a850d82
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 4
+        type: if-else
+      height: 174
+      id: '1740693801045'
+      position:
+        x: 1246
+        y: 593
+      positionAbsolute:
+        x: 1246
+        y: 593
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: ''
+            type: basic
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: ''
+          type: none
+        desc: ''
+        headers: Authorization:Bearer apikey
+        method: GET
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request 2
+        type: http-request
+        url: https://{yourdomain}//v1/datasets/{dataset id}/documents
+        variables: []
+      height: 135
+      id: '1740728759084'
+      position:
+        x: 1550
+        y: 910
+      positionAbsolute:
+        x: 1550
+        y: 910
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取body传递过来信息中的所有name，并将name去重
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        parameters:
+        - description: 提取body中的所有name
+          name: Name
+          required: false
+          type: array[string]
+        query:
+        - '1740728759084'
+        - body
+        reasoning_mode: prompt
+        selected: false
+        title: Parameter Extractor
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1740729494535'
+      position:
+        x: 1854
+        y: 943
+      positionAbsolute:
+        x: 1854
+        y: 943
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1740729494535.Name#}}'
+        desc: ''
+        selected: false
+        title: Answer 6
+        type: answer
+        variables: []
+      height: 103
+      id: '1740729596807'
+      position:
+        x: 2158
+        y: 974
+      positionAbsolute:
+        x: 2158
+        y: 974
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -94.69868740082552
+      y: 26.377018504372245
+      zoom: 0.6619212984167094
